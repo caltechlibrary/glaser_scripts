@@ -9,6 +9,8 @@ if [[ $# == 0 ]]; then
     exit 1
 fi
 
+mkdir -p "$1"
+
 scripts="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # /tmp/dag-inventory | yrotnevni-gad/pmt/ | yrotnevni-gad | dag-inventory | dag
