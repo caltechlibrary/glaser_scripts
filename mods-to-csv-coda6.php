@@ -42,6 +42,9 @@ foreach ($iterator as $fileInfo) {
   if (!isset($mods->note->type['ownership'])) {
     $data[] = $mods->note->__toString();
   }
+  else {
+    $data[] = '';
+  }
 
   // [4] host
   $data[] = $mods->relatedItem->note->__toString();
@@ -49,6 +52,9 @@ foreach ($iterator as $fileInfo) {
   // [5] ownership
   if (isset($mods->note->type['ownership'])) {
     $data[] = $mods->note->__toString();
+  }
+  else {
+    $data[] = '';
   }
 
   // [6] coda6_pid; from filename
