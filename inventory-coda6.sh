@@ -52,5 +52,5 @@ drush idcrudfd --root=/var/www/html/drupal7 --user=1 --dsid=MODS --datastreams_d
 drush idcrudfd --root=/var/www/html/drupal7 --user=1 --dsid=MODS --datastreams_directory="$1"/findingAidCModel --pid_file="$1"/findingAidCModel.pids --yes
 
 # compile mods data into csv
-echo 'identifier,title,host,coda6_pid,coda6_content_model,coda6_page_count' | tee "$1"/inventory-coda6.csv
+echo 'identifier,title,date,note,host,ownership,coda6_pid,coda6_content_model,coda6_page_count' | tee "$1"/inventory-coda6.csv
 php "${scripts}"/mods-to-csv-coda6.php "$1"
