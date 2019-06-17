@@ -35,17 +35,30 @@ foreach ($iterator as $fileInfo) {
   // [1] title
   $data[] = $mods->titleInfo->title->__toString();
 
-  // [2] host
+  // [2] date
+  $data[] = $mods->originInfo->dateIssued->__toString();
+
+  // [3] note
+  if (!isset($mods->note->type['ownership'])) {
+    $data[] = $mods->note->__toString();
+  }
+
+  // [4] host
   $data[] = $mods->relatedItem->note->__toString();
 
-  // [3] coda6_pid; from filename
+  // [5] ownership
+  if (isset($mods->note->type['ownership'])) {
+    $data[] = $mods->note->__toString();
+  }
+
+  // [6] coda6_pid; from filename
   $pid_slug = str_replace('_MODS.xml', '', $filename);
   $data[] = $pid = str_replace('_', ':', $pid_slug);
 
-  // [4] coda6_content_model; from directory
+  // [7] coda6_content_model; from directory
   $data[] = $path_items[3];
 
-  // [5] coda6_page_count; from idcrudfp query
+  // [8] coda6_page_count; from idcrudfp query
   if ($path_items[3] == 'bookCModel') {
     $lines = [];
     exec("drush idcrudfp --root=/var/www/html/drupal7 --user=1 --is_member_of=${pid} --pid_file=${argv[1]}/${pid_slug}.pids");
