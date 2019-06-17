@@ -26,7 +26,7 @@ path=$(dirname "$1")
 directory=$(basename "$1" .pids)
 destination="${path}/${directory}"
 
-#
+# take the value of $1 from before the . then reverse it and take the first character
 series=$(printf "$1" | cut -d'.' -f 1 | rev | cut -c1)
 
 drush idcrudfp --user=1 --root=/var/www/html/drupal7 --pid_file="$1" --solr_query="PID:dag\:* AND RELS_EXT_hasModel_uri_s:info\:fedora\/islandora\:bookCModel AND mods_relatedItem_host_note_s:Part\ of\ Series\ ${series}*"
