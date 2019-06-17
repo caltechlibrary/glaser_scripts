@@ -55,20 +55,6 @@ php "${scripts}"/create-obj-jp2.php "$destination"
 
 php "${scripts}"/move-preservation-files.php "$destination"
 
-
-
 # Next steps:
 # - transfer datastreams to new server
 # - ingest objects into new instance
-
-
-
-
-bash $(dirname "$0")/create-directories-from-pids.sh "$1"
-
-# fetch page pids for each book directory
-php $(dirname "$0")/fetch-page-pids.php "$destination"
-
-php $(dirname "$0")/fetch-techmd.php "$destination"
-
-php $(dirname "$0")/compile-techmd-filesize.php "$destination"
