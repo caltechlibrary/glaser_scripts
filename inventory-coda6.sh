@@ -17,24 +17,24 @@ scripts="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 slug=$(printf "$1" | rev | cut -d'/' -f 1 | rev | cut -d'-' -f 1)
 
 # get all bookCModel pids
-rm "$1"/bookCModel.pids # so as not to append
-drush idcrudfp --root=/var/www/html/drupal7 --user=1 --namespace="$slug" --content_model=islandora:bookCModel --pid_file="$1"/bookCModel.pids
+if [[ -e "$1"/bookCModel.pids ]]; then rm "$1"/bookCModel.pids; fi # so as not to append
+drush idcrudfp --root=/var/www/html/drupal7 --user=1 --namespace=pbm --content_model=islandora:bookCModel --pid_file="$1"/bookCModel.pids
 
 # get all sp_videoCModel pids
-rm "$1"/sp_videoCModel.pids # so as not to append
-drush idcrudfp --root=/var/www/html/drupal7 --user=1 --namespace="$slug" --content_model=islandora:sp_videoCModel --pid_file="$1"/sp_videoCModel.pids
+if [[ -e "$1"/sp_videoCModel.pids ]]; then rm "$1"/sp_videoCModel.pids; fi # so as not to append
+drush idcrudfp --root=/var/www/html/drupal7 --user=1 --namespace=pbm --content_model=islandora:sp_videoCModel --pid_file="$1"/sp_videoCModel.pids
 
 # get all sp_large_image_cmodel pids
-rm "$1"/sp_large_image_cmodel.pids # so as not to append
-drush idcrudfp --root=/var/www/html/drupal7 --user=1 --namespace="$slug" --content_model=islandora:sp_large_image_cmodel --pid_file="$1"/sp_large_image_cmodel.pids
+if [[ -e "$1"/sp_large_image_cmodel.pids ]]; then rm "$1"/sp_large_image_cmodel.pids; fi # so as not to append
+drush idcrudfp --root=/var/www/html/drupal7 --user=1 --namespace=pbm --content_model=islandora:sp_large_image_cmodel --pid_file="$1"/sp_large_image_cmodel.pids
 
 # get all sp-audioCModel pids
-rm "$1"/sp-audioCModel.pids # so as not to append
-drush idcrudfp --root=/var/www/html/drupal7 --user=1 --namespace="$slug" --content_model=islandora:sp-audioCModel --pid_file="$1"/sp-audioCModel.pids
+if [[ -e "$1"/sp-audioCModel.pids ]]; then rm "$1"/sp-audioCModel.pids; fi # so as not to append
+drush idcrudfp --root=/var/www/html/drupal7 --user=1 --namespace=pbm --content_model=islandora:sp-audioCModel --pid_file="$1"/sp-audioCModel.pids
 
 # get all findingAidCModel pids
-rm "$1"/findingAidCModel.pids # so as not to append
-drush idcrudfp --root=/var/www/html/drupal7 --user=1 --namespace="$slug" --content_model=islandora:findingAidCModel --pid_file="$1"/findingAidCModel.pids
+if [[ -e "$1"/findingAidCModel.pids ]]; then rm "$1"/findingAidCModel.pids; fi # so as not to append
+drush idcrudfp --root=/var/www/html/drupal7 --user=1 --namespace=pbm --content_model=islandora:findingAidCModel --pid_file="$1"/findingAidCModel.pids
 
 # get all bookCModel mods
 drush idcrudfd --root=/var/www/html/drupal7 --user=1 --dsid=MODS --datastreams_directory="$1"/bookCModel --pid_file="$1"/bookCModel.pids --yes
