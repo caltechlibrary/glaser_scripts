@@ -50,7 +50,7 @@
 
 // make sure NAS directory exists
 $nas_mnt = '/mnt/Workspace';
-$slug = dirname($argv[1]);
+$slug = basename($argv[1]);
 $slugparts = explode('-', $slug);
 $nas_destination = $nas_mnt . '/' . $slugparts[0];
 if (!file_exists($nas_destination)) {
