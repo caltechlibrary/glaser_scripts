@@ -51,7 +51,7 @@ foreach ($iterator as $fileInfo) {
 
   // [5] ownership
   if (isset($mods->note->type['ownership'])) {
-    $data[] = $mods->note->__toString();
+    $data[] = (string) $mods->xpath('//blerg:note[@type="ownership"]/text()')[0];
   }
   else {
     $data[] = '';
