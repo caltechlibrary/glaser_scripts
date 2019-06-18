@@ -50,7 +50,7 @@ foreach ($iterator as $fileInfo) {
   $data[] = $mods->relatedItem->note->__toString();
 
   // [5] ownership
-  if (isset($mods->note->type['ownership'])) {
+  if (isset($mods->note['type']) && $mods->note['type'] == 'ownership') {
     $data[] = (string) $mods->xpath('//blerg:note[@type="ownership"]/text()')[0];
   }
   else {
