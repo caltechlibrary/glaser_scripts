@@ -55,6 +55,13 @@ php "${scripts}"/create-obj-jp2.php "$destination"
 
 php "${scripts}"/move-preservation-files.php "$destination"
 
+##
 # Next steps:
-# - transfer datastreams to new server
+#
+# - transfer datastreams to new server (ssh user must have permission)
+# time rsync -avz /d3/tmp/***DIRECTORY*** ***USER***@isl12.chillco.com:/opt/fedora/tmp/.
+#
 # - ingest objects into new instance
+# drush islandora_book_batch_preprocess --user=1 --root=/var/www/islandora71/caltech/current/docroot --type=directory --namespace=glaser --parent=caltech:glaser --scan_target=/opt/fedora/tmp/***DIRECTORY***
+# until drush islandora_batch_ingest --user=1 --root=/var/www/islandora71/caltech/current/docroot; do drush sqlq "DELETE FROM semaphore WHERE name = 'islandora_batch_ingest'" --root=/var/www/islandora71/caltech/current/docroot; echo "🔁  retrying batch ingest..."; done
+##
