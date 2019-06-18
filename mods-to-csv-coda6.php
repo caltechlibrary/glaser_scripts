@@ -39,7 +39,7 @@ foreach ($iterator as $fileInfo) {
   $data[] = $mods->originInfo->dateIssued->__toString();
 
   // [3] note
-  if (!isset($mods->note->type['ownership'])) {
+  if (!isset($mods->note['type'])) {
     $data[] = $mods->note->__toString();
   }
   else {
