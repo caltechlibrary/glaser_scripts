@@ -16,13 +16,13 @@ if (!is_dir($destination_directory . '/logs')) {
   }
 }
 
-// create reconstituted directory
-if (!is_dir($destination_directory . '/reconstituted')) {
-  if (!mkdir($destination_directory . '/reconstituted', 0777, TRUE)) {
-    echolog("🛑  exited: failed to create {$destination_directory}/reconstituted directory...\n");
-    exit();
-  }
-}
+//// create reconstituted directory
+//if (!is_dir($destination_directory . '/reconstituted')) {
+//  if (!mkdir($destination_directory . '/reconstituted', 0777, TRUE)) {
+//    echolog("🛑  exited: failed to create {$destination_directory}/reconstituted directory...\n");
+//    exit();
+//  }
+//}
 
 // loop over every item inside directory passed as $argv[1]
 $dirItem = new RecursiveDirectoryIterator($argv[1], RecursiveDirectoryIterator::SKIP_DOTS);
@@ -233,10 +233,10 @@ foreach ($folderPaths as $folderPath) {
       filelog("🚀 running... "  . $write);
       exec($write);
 
-      // diff identify output
-      $identify_source = "identify -verbose '{$sourceFilePathName}' > {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-source.identify 2>&1";
-      filelog("🚀 running... "  . $identify_source);
-      exec($identify_source);
+//      // diff identify output
+//      $identify_source = "identify -verbose '{$sourceFilePathName}' > {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-source.identify 2>&1";
+//      filelog("🚀 running... "  . $identify_source);
+//      exec($identify_source);
 //      $identify_destination = "identify -verbose '{$destinationFile}' > {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-destination.identify 2>&1";
 //      filelog("🚀 running... "  . $identify_destination);
 //      exec($identify_destination);
@@ -244,10 +244,10 @@ foreach ($folderPaths as $folderPath) {
 //      filelog("🚀 running... "  . $diff_identify_converted);
 //      exec($diff_identify_converted);
 
-      // diff exiftool output
-      $exiftool_source = "exiftool -a -u -G1:2 '{$sourceFilePathName}' > {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-source.exiftool";
-      filelog("🚀 running... "  . $exiftool_source);
-      exec($exiftool_source);
+//      // diff exiftool output
+//      $exiftool_source = "exiftool -a -u -G1:2 '{$sourceFilePathName}' > {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-source.exiftool";
+//      filelog("🚀 running... "  . $exiftool_source);
+//      exec($exiftool_source);
 //      $exiftool_destination = "exiftool -a -u -G1:2 '{$destinationFile}' > {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-destination.exiftool";
 //      filelog("🚀 running... "  . $exiftool_destination);
 //      exec($exiftool_destination);
@@ -255,29 +255,29 @@ foreach ($folderPaths as $folderPath) {
 //      filelog("🚀 running... "  . $diff_exiftool_converted);
 //      exec($diff_exiftool_converted);
 
-      // reconstitute TIFF
-      $reconstitute = "convert $destinationFile +compress {$destination_directory}/reconstituted/{$itemName}_{$sourceFileBaseName}.tiff >>$logfile 2>&1";
-      filelog("🚀 running... "  . $reconstitute);
-      exec($reconstitute);
+//      // reconstitute TIFF
+//      $reconstitute = "convert $destinationFile +compress {$destination_directory}/reconstituted/{$itemName}_{$sourceFileBaseName}.tiff >>$logfile 2>&1";
+//      filelog("🚀 running... "  . $reconstitute);
+//      exec($reconstitute);
 
-      // diff identify output
-      $identify_reconstituted = "identify -verbose '{$destination_directory}/reconstituted/{$itemName}_{$sourceFileBaseName}.tiff' > {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-reconstituted.identify 2>&1";
-      filelog("🚀 running... "  . $identify_reconstituted);
-      exec($identify_reconstituted);
-      $diff_identify_reconstituted = "diff {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-source.identify {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-reconstituted.identify > {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-tiff-tiff-identify.diff";
-      filelog("🚀 running... "  . $diff_identify_reconstituted);
-      exec($diff_identify_reconstituted);
+//      // diff identify output
+//      $identify_reconstituted = "identify -verbose '{$destination_directory}/reconstituted/{$itemName}_{$sourceFileBaseName}.tiff' > {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-reconstituted.identify 2>&1";
+//      filelog("🚀 running... "  . $identify_reconstituted);
+//      exec($identify_reconstituted);
+//      $diff_identify_reconstituted = "diff {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-source.identify {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-reconstituted.identify > {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-tiff-tiff-identify.diff";
+//      filelog("🚀 running... "  . $diff_identify_reconstituted);
+//      exec($diff_identify_reconstituted);
 
-      // diff exiftool output
-      $exiftool_reconstituted = "exiftool -a -u -G1:2 '{$destination_directory}/reconstituted/{$itemName}_{$sourceFileBaseName}.tiff' > {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-reconstituted.exiftool";
-      filelog("🚀 running... "  . $exiftool_reconstituted);
-      exec($exiftool_reconstituted);
-      $diff_exiftool_reconstituted = "diff {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-source.exiftool {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-reconstituted.exiftool > {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-tiff-tiff-exiftool.diff";
-      filelog("🚀 running... "  . $diff_exiftool_reconstituted);
-      exec($diff_exiftool_reconstituted);
+//      // diff exiftool output
+//      $exiftool_reconstituted = "exiftool -a -u -G1:2 '{$destination_directory}/reconstituted/{$itemName}_{$sourceFileBaseName}.tiff' > {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-reconstituted.exiftool";
+//      filelog("🚀 running... "  . $exiftool_reconstituted);
+//      exec($exiftool_reconstituted);
+//      $diff_exiftool_reconstituted = "diff {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-source.exiftool {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-reconstituted.exiftool > {$destination_directory}/logs/{$itemName}_{$sourceFileBaseName}-tiff-tiff-exiftool.diff";
+//      filelog("🚀 running... "  . $diff_exiftool_reconstituted);
+//      exec($diff_exiftool_reconstituted);
 
-      array_map('unlink', glob("{$destination_directory}/logs/*.identify"));
-      array_map('unlink', glob("{$destination_directory}/logs/*.exiftool"));
+//      array_map('unlink', glob("{$destination_directory}/logs/*.identify"));
+//      array_map('unlink', glob("{$destination_directory}/logs/*.exiftool"));
 
       $remaining_tiffs--;
       echolog("✨ created {$itemName}_{$sourceFileBaseName}.jp2");
