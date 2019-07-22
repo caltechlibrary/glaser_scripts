@@ -15,7 +15,7 @@ scripts="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # takes the target directory name and gets the slug from it
 # /tmp/dag-inventory | yrotnevni-gad/pmt/ | yrotnevni-gad | dag-inventory | dag
-slug=$(printf "$1" | rev | cut -d'/' -f 1 | rev | cut -d'-' -f 1)
+slug=$(printf "%s" "$1" | rev | cut -d'/' -f 1 | rev | cut -d'-' -f 1)
 
 isl12_root='/var/www/islandora71/caltech/current/docroot'
 
